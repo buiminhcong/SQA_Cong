@@ -71,7 +71,7 @@ public class CustomerController {
         return "edit-customer";
     }
 
-    @PutMapping("/save-edit")
+    @PostMapping("/save-edit")
     public String saveEdit(@Valid @ModelAttribute("customer") Customer customer, Errors errors, Model model) {
         System.out.println(customer.getName());
         if (errors.hasErrors()) {
