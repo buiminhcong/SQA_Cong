@@ -10,8 +10,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
+import java.util.Arrays;
+import java.util.List;
 
 @Controller
 public class LoginController {
@@ -23,9 +26,12 @@ public class LoginController {
     private StaffRepository staffRepository;
 
     @GetMapping("/login")
-    public String login(Model model){
+    public String login(Model model, HttpSession session){
         Staff staff = new Staff();
         model.addAttribute("staff", staff);
+        String s = (String) session.getAttribute("incorect");
+        session.removeAttribute("incorect");
+        model.addAttribute("incorect", s);
         System.out.println("done");
         return "login";
     }
@@ -37,7 +43,8 @@ public class LoginController {
 
 
     @PostMapping("/home-staff")
-    public String HomeStaff(@ModelAttribute("staff") Staff staff,  Model model, HttpSession session){
+    public String HomeStaff(@ModelAttribute("staff") Staff staff,  Model model,
+                            HttpSession session){
 
         String us = staff.getUsername();
         String ps = staff.getPassword();
@@ -46,12 +53,12 @@ public class LoginController {
         Staff s = staffService.getStaffByUserNameAndPassword(us, ps);
 
         System.out.println(check);
-
         if(check == true){
             session.setAttribute("staff", s);
             return "home-staff";
         }else {
-            return "login";
+            session.setAttribute("incorect", "Tài khoản hoặc mật khẩu không khớp!");
+            return "redirect:login";
         }
 
     }
@@ -62,7 +69,7 @@ public class LoginController {
         model.addAttribute("staff", s);
         session.removeAttribute("staff");
 
-        return "login";
+        return "redirect:login";
     }
 
 }

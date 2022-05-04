@@ -627,3 +627,140 @@ a {
 .table-wrapper-scroll-y {
     display: block;
 }
+
+.header1 div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+i {
+    margin-right: 8px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.header2 {
+    font-weight: bold;
+    background-color: white;
+    display: flex;
+    justify-content: space-around;
+}
+/*Long*/
+body {
+    background-color: #f3f4f5;
+}
+
+.thongke {
+    display: flex;
+    justify-content: space-around;
+}
+
+.thongke-item {
+    background-color: white;
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 2px 2px 10px rgb(207, 207, 207);
+}
+
+.toptiemnang {
+    margin: 0 70px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid rgb(255, 255, 255);
+    background-color: white;
+    box-shadow: 2px 2px 10px rgb(159, 231, 163);
+}
+
+.giaodich {
+    margin: 0 65px 0px 82px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid rgb(255, 255, 255);
+    background-color: white;
+    box-shadow: 2px 2px 10px rgb(233, 174, 230);
+}
+
+.topsanpham {
+    /* margin: 0 70px; */
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid rgb(255, 255, 255);
+    background-color: white;
+    box-shadow: 2px 2px 10px rgb(158, 160, 131);
+}
+
+.footer {
+    padding: 8mm 0;
+    display: flex;
+    justify-content: space-around;
+    background-color: white;
+}
+
+.anyClass {
+    height: 400px;
+    overflow-y: scroll;
+}
+
+.footer-left-title,
+.footer-right-title {
+    text-align: center;
+    color: blue;
+    font-weight: bold;
+}
+
+.footer-left-item {
+    margin-top: 5mm;
+}
+
+.formThemKH {
+    margin: auto;
+    width: 70%;
+    text-align: center;
+    align-content: center;
+    display: block;
+}
+
+.formThemKH,
+.formBanHang {
+    border-radius: 10px;
+    border: 1px solid rgb(255, 255, 255);
+    padding: 20px;
+    background-color: white;
+    box-shadow: 2px 2px 10px rgb(212, 209, 208);
+}
+
+.formBanHang {
+    text-align: center;
+    align-content: center;
+    display: block;
+}
+
+h5 {
+    margin-bottom: 20px;
+}
+
+.quaylaihoantat {
+    display: none;
+}
+
+.formThemGiaoDich {
+    border-radius: 10px;
+    border: 1px solid rgb(255, 255, 255);
+    padding: 20px;
+    background-color: white;
+    box-shadow: 2px 2px 10px rgb(173, 173, 173);
+    display: block;
+}
+
+.locKH {
+    border-radius: 10px;
+    border: 1px solid rgb(255, 255, 255);
+    padding: 20px;
+    background-color: white;
+    box-shadow: 2px 2px 10px rgb(173, 173, 173);
+    display: block;
+}
+/*Long*/

@@ -39,7 +39,8 @@ public class CustomerController {
     }
 
     @PostMapping("/save")
-    public String save(@Valid @ModelAttribute("customer") Customer customer, Errors errors, Model model) {
+    public String save(@Valid @ModelAttribute("customer") Customer customer,
+                       Errors errors, Model model) {
 
 
         if (errors.hasErrors()) {
@@ -50,16 +51,14 @@ public class CustomerController {
         } else {
             List<Customer> customerList = customerService.getCustomerByPhone(customer.getPhone());
             System.out.println(customerList.size());
-            if (customerList.size() == 0) {
-                customer.setIsActive(1);
-                customer.setTotalCoins(0);
-                customerService.saveCustoemr(customer);
+
+            if(customerService.saveCustoemr(customer) == true){
                 return "redirect:/customer/list-customer";
-            } else {
-                System.out.println("Cong");
+            }else {
                 model.addAttribute("f", "Đã có khách hàng sử dụng số điện thoại trên!");
                 return "add-customer";
             }
+
         }
     }
 
@@ -78,19 +77,14 @@ public class CustomerController {
             System.out.println("co loi");
             return "edit-customer";
         } else {
-            System.out.println(customer.getId() + " " + customer.getName());
-            System.out.println("Luu Thanh cong");
 
-            List<Customer> customerList = customerService.getCustomerByPhone(customer.getPhone());
-            if (customerList.size() >= 2) {
-                System.out.println("Cong");
+            if(customerService.edtiCustomer(customer.getId(), customer) == false){
                 model.addAttribute("f", "Đã có khách hàng sử dụng số điện thoại trên!");
                 return "add-customer";
-            } else {
+            }else {
                 customerService.edtiCustomer(customer.getId(), customer);
                 return "redirect:/customer/list-customer";
             }
-
         }
     }
 

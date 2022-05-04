@@ -10,10 +10,13 @@ import java.util.List;
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 
-    @Query(value = "select * from customer where phone = ?", nativeQuery = true)
-    List<Customer> findCustomerByPhone(String phone);
+    @Query(value = "select * from customer where phone like %:key%", nativeQuery = true)
+    List<Customer> findCustomerByPhone(String key);
 
     @Query(value = "SELECT * FROM sqa_cong.customer where is_active = 1", nativeQuery = true)
     List<Customer> getAllCustomer();
+
+    @Query(value = "select * from customer where phone = ?", nativeQuery = true)
+    Customer getCustomerByPhone(String key);
 
 }

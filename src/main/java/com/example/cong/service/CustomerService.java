@@ -18,8 +18,10 @@ public interface CustomerService {
 
     List<Customer> getAllCustomer();
 
-    void edtiCustomer(int id, Customer customer);
+    boolean edtiCustomer(int id, Customer customer);
 
     void deleteCustomerById(int id);
+
+    Customer getOneCustomerByPhone(String phone);
 
 }

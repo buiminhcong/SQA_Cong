@@ -45,7 +45,6 @@
 <body>
 <div th:fragment="navbar">
     <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top shadow-sm">
-        <!-- <a class="navbar-brand" th:href="@{/}"><img width="150" height="30" src="/image/logo.png"></a>  -->
         <a class="navbar-brand" th:href="@{/home-staff}">Logo</a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -63,6 +62,9 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/customer/list-customer}"> Quản lý khách hàng </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/}"> Bán Hàng </a>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto font-weight-bold">
@@ -88,7 +90,7 @@
     <footer class="bg-light text-center text-lg-start">
         <!-- Copyright -->
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-            © 2020 Copyright:
+            © 2022 Copyright:
             <a class="text-dark" href="https://mdbootstrap.com/">MDBootstrap.com</a>
         </div>
         <!-- Copyright -->

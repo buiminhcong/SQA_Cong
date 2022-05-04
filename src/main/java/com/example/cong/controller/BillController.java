@@ -3,8 +3,6 @@ package com.example.cong.controller;
 import com.example.cong.entitis.Bill;
 import com.example.cong.entitis.Customer;
 import com.example.cong.entitis.GoodsItem;
-import com.example.cong.entitis.Staff;
-import com.example.cong.repository.GoodItemRepository;
 import com.example.cong.service.BillService;
 import com.example.cong.service.CustomerService;
 import com.example.cong.service.GoodItemService;
@@ -16,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.text.NumberFormat;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -37,19 +36,28 @@ public class BillController {
     NumberFormat currentLocale = NumberFormat.getInstance();
 
     @GetMapping("/list-bill")
-    public String getBills(Model model){
+    public String getBills( HttpSession session, Model model){
+
+        List<String> list = Arrays.asList(session.getValueNames());
 
         List<Bill> bills = billService.getBills();
+        System.out.println(list.size());
 
-        for(int i=0; i<bills.size(); i++){
-            double gia = bills.get(i).getActualPrice();
-            String g = currentLocale.format(gia);
-            bills.get(i).setActualPriceString(g);
+        if(list.size() > 0){
+            for(int i=0; i<bills.size(); i++){
+                double gia = bills.get(i).getActualPrice();
+                String g = currentLocale.format(gia);
+                bills.get(i).setActualPriceString(g);
+            }
+
+            model.addAttribute("listBills", bills);
+
+            return "get-bills";
+        }else {
+            return "login";
         }
 
-        model.addAttribute("listBills", bills);
 
-        return "get-bills";
     }
 
     @RequestMapping("/view")

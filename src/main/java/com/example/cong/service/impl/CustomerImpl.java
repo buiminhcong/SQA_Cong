@@ -17,7 +17,17 @@ public class CustomerImpl implements CustomerService {
 
     @Override
     public Customer getCustomerById(int id) {
-        return customerRepository.getById(id);
+        Optional<Customer> optional = customerRepository.findById(id);
+        if (optional.isPresent()){
+            Customer c = optional.get();
+            System.out.println(c.getId());
+            return c;
+        }else {
+            System.out.println("NUll roi");
+            return null;
+
+        }
+
     }
 
     @Override
@@ -34,8 +44,16 @@ public class CustomerImpl implements CustomerService {
 
     @Override
     public Boolean saveCustoemr(Customer customer) {
-        customerRepository.save(customer);
-        return null;
+
+        List<Customer> customerList = getCustomerByPhone(customer.getPhone());
+
+        if (customerList.size() == 0) {
+            customer.setIsActive(1);
+            customer.setTotalCoins(0);
+            customerRepository.save(customer);
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -45,17 +63,29 @@ public class CustomerImpl implements CustomerService {
     }
 
     @Override
-    public void edtiCustomer(int id, Customer customer) {
+    public boolean edtiCustomer(int id, Customer customer) {
 
         Optional<Customer> optional = customerRepository.findById(id);
-        Customer c = optional.get();
-        c.setName(customer.getName());
-        c.setPhone(customer.getPhone());
-        c.setEmail(customer.getEmail());
-        c.setAddress(customer.getAddress());
-        c.setIsActive(1);
-        c.setTotalCoins(c.getTotalCoins());
-        customerRepository.save(c);
+        if(optional.isPresent()){
+            if(customer.getPhone().trim() == optional.get().getPhone().trim() ){
+                return false;
+            }else {
+                Customer csm = optional.get();
+                csm.setPhone(customer.getPhone());
+                csm.setAddress(customer.getAddress());
+                csm.setEmail(customer.getEmail());
+                csm.setName(customer.getName());
+                customerRepository.save(csm);
+//                customerRepository.delete(customer);
+                return true;
+            }
+        }else {
+            return  false;
+        }
+
+
+
+
     }
 
     @Override
@@ -63,6 +93,16 @@ public class CustomerImpl implements CustomerService {
         Customer c = customerRepository.getById(id);
         c.setIsActive(0);
         customerRepository.save(c);
+    }
+
+    @Override
+    public Customer getOneCustomerByPhone(String phone) {
+        Optional<Customer> optional = Optional.ofNullable(customerRepository.getCustomerByPhone(phone));
+        if(optional.isPresent()){
+            Customer c = optional.get();
+            return c ;
+        }
+        return null;
     }
 
 

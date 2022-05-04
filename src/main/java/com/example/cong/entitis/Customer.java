@@ -1,7 +1,9 @@
 package com.example.cong.entitis;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,6 +15,7 @@ import javax.validation.constraints.Size;
 
 @Data
 @Entity
+@NoArgsConstructor
 public class Customer {
 
     @Id
@@ -30,4 +33,12 @@ public class Customer {
     private double totalCoins;
     private int isActive;
 
+    public Customer(String name, String phone, String email, String address, double totalCoins, int isActive) {
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.totalCoins = totalCoins;
+        this.isActive = isActive;
+    }
 }

@@ -22,7 +22,7 @@
     </div>
     <div class="row">
       <p class="col-2"></p>
-      <p class="col-10 text-danger"   th:if="${#fields.hasErrors('name')}"  th:errors="*{name}" ></p>
+      <p class="col-8 text-danger"   th:if="${#fields.hasErrors('name')}"  th:errors="*{name}" ></p>
     </div>
     <div class="row">
       <p class="col-2">Số điện thoại</p>
@@ -30,8 +30,8 @@
     </div>
     <div class="row">
       <p class="col-2"></p>
-      <p class="col-10 text-danger" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" th:text="${f}"></p>
-      <p class="col-10 text-danger"  th:text="${f}"></p>
+      <p class="col-8 text-danger" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" th:text="${f}"></p>
+      <p class="col-8 text-danger"  th:text="${f}"></p>
     </div>
     <div class="row">
       <p class="col-2">Email</p>
@@ -39,7 +39,7 @@
     </div>
     <div class="row">
       <p class="col-2"></p>
-      <p class="col-10 text-danger"  th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+      <p class="col-8 text-danger"  th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
     </div>
     <div class="row">
       <p class="col-2">Địa chỉ</p>
@@ -47,7 +47,7 @@
     </div>
     <div class="row">
       <p class="col-2"></p>
-      <p class="col-10 text-danger" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></p>
+      <p class="col-8 text-danger" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></p>
     </div>
     <div class="row">
       <p class="col-2"></p>
